@@ -1,0 +1,12 @@
+.counter, .congratulation{
+    text-align: center;
+    margin: 0;
+    padding: 46px;
+    align-items: center;
+    font-weight: normal;
+}
+
+.counter span{
+    font-weight: bold;
+}
+

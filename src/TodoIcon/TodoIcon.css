@@ -1,0 +1,33 @@
+
+.icon_container {
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    padding-left: 20px;
+    padding-right: 20px;
+    cursor: pointer;
+}
+
+.icon_container_check{
+    font-size: 18px;
+}
+
+.icon_container_delete{
+    font-size: 18px;
+}
+
+.icon_container_check--actived {
+    color: green;
+}
+
+.icon_container_check:hover{
+    color:green
+}
+
+.icon_container_delete:hover{
+    color:red
+}
+
+.icon_svg {
+    width: 24px;
+    height: 24px;
+}

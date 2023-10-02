@@ -1,0 +1,15 @@
+.search {
+    width: 80%;
+    height: 50px;
+    border-radius: 28px;
+    
+    border: none;
+    border-color: rgb(233, 14, 14);
+    background-color: rgba(106, 69, 148, 0.658)
+}
+
+.search::placeholder{
+    color: white;
+    padding-left: 18px;
+   
+}
