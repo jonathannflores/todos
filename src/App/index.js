@@ -4,6 +4,9 @@ import { TodoList } from '../TodoList/index.js';
 import { TodoItem } from '../TodoItem/index.js';
 import { CreateTodoButton } from '../CreateTodoButton/index.js';
 import { useLocalStorage } from './useLocalStorage.js';
+import { TodosLoading } from '../TodosLoading/index.js';
+import { TodosError } from '../TodosError/index.js';
+import { EmptyTodos } from '../EmptyTodos/index.js';
 import React from 'react';
 
 // const defaultTodos = [
@@ -18,7 +21,7 @@ import React from 'react';
 
 function App() {
 
-  const [todos, saveTodo] = useLocalStorage('TODOS_V1', []);
+  const { item: todos, saveItem: saveTodo, loading, error} = useLocalStorage('TODOS_V1', []);
   const completedTodos = todos.filter(todo => todo.completed).length;
   const totalTodos = todos.length;
 
@@ -27,7 +30,7 @@ function App() {
   const resultados = todos.filter((todo)=>{
     return todo.text.toLowerCase().includes(searchValue.toLowerCase())
   })
-  
+
   
   function completeTodo(text){
     const newTodos = [...todos];
@@ -55,6 +58,10 @@ function App() {
       <TodoSearch searchValue={searchValue} setSearchValue={setSearchValue} />
 
       <TodoList>
+        {loading && <TodosLoading />} 
+        {error && <TodosError />}
+        {(!loading && resultados.length === 0) && <EmptyTodos />}
+
         {resultados.map(todo => (
           <TodoItem key={todo.text} 
           text={todo.text} 
