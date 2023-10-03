@@ -58,7 +58,11 @@ function App() {
       <TodoSearch searchValue={searchValue} setSearchValue={setSearchValue} />
 
       <TodoList>
-        {loading && <TodosLoading />} 
+        {loading && (<>
+          <TodosLoading />
+          <TodosLoading />
+          <TodosLoading />
+        </>)} 
         {error && <TodosError />}
         {(!loading && resultados.length === 0) && <EmptyTodos />}
 

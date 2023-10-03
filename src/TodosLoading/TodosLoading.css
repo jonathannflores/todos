@@ -1,0 +1,25 @@
+.loading-container {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 10px;
+    width: auto;
+    height: 60px;
+    margin: 20px 0 20px 0;
+
+    background: linear-gradient(90deg, rgb(73, 57, 92), rgb(98, 59, 129));
+    background-size: 400% 400%;
+    animation: loadingAnimation 1s ease-in-out infinite;
+}
+
+@keyframes loadingAnimation {
+    0%{
+        background-position: 0% 50%;
+    } 50%{
+        background-position: 100% 50%;
+    }100%{
+        background-position: 0% 50%;
+    }
+}
