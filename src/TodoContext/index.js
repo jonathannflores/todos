@@ -11,6 +11,7 @@ function TodoProvider({ children }){
   const totalTodos = todos.length;
 
   const [searchValue, setSearchValue] = React.useState('');
+  const [openModal, setOpenModal] = React.useState(true)
 
   const resultados = todos.filter((todo)=>{
     return todo.text.toLowerCase().includes(searchValue.toLowerCase())
@@ -44,7 +45,9 @@ function TodoProvider({ children }){
         setSearchValue,
         resultados,
         completeTodo,
-        deleteTodo
+        deleteTodo,
+        openModal,
+        setOpenModal
     }}>
          {children}
     </TodoContext.Provider>
