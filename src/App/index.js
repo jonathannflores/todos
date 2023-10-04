@@ -1,13 +1,17 @@
-import { TodoCounter } from '../TodoCounter/index.js';
-import { TodoSearch } from '../TodoSearch/index.js';
-import { TodoList } from '../TodoList/index.js';
-import { TodoItem } from '../TodoItem/index.js';
-import { CreateTodoButton } from '../CreateTodoButton/index.js';
-import { useLocalStorage } from './useLocalStorage.js';
-import { TodosLoading } from '../TodosLoading/index.js';
-import { TodosError } from '../TodosError/index.js';
-import { EmptyTodos } from '../EmptyTodos/index.js';
 import React from 'react';
+import { TodoProvider } from '../TodoContext';
+import { AppUI } from './AppUI';
+
+function App() {
+
+  return (
+    <TodoProvider>
+      <AppUI />
+    </TodoProvider>    
+  );
+}
+
+export default App;
 
 // const defaultTodos = [
 //   {text: 'Beber agua', completed: true},
@@ -17,69 +21,3 @@ import React from 'react';
 // ];
 // localStorage.setItem('TODOS_V1', JSON.stringify(defaultTodos))
 // localStorage.removeItem('TODOS_V1', defaultTodos)
-
-
-function App() {
-
-  const { item: todos, saveItem: saveTodo, loading, error} = useLocalStorage('TODOS_V1', []);
-  const completedTodos = todos.filter(todo => todo.completed).length;
-  const totalTodos = todos.length;
-
-  const [searchValue, setSearchValue] = React.useState('');
-
-  const resultados = todos.filter((todo)=>{
-    return todo.text.toLowerCase().includes(searchValue.toLowerCase())
-  })
-
-  
-  function completeTodo(text){
-    const newTodos = [...todos];
-    const todoIndex = newTodos.findIndex(
-      (todo) => todo.text === text
-    )
-    newTodos[todoIndex].completed = true;
-    saveTodo(newTodos)
-  }
-
-  function deleteTodo(text){
-    const newTodos = [...todos];
-    const todoIndex = newTodos.findIndex(
-      (todo) => todo.text === text
-    )
-    newTodos.splice(todoIndex ,1)
-    saveTodo(newTodos)
-  }  
-
-  return (
-    <>
-
-      <TodoCounter completed={completedTodos} total={totalTodos} />
-
-      <TodoSearch searchValue={searchValue} setSearchValue={setSearchValue} />
-
-      <TodoList>
-        {loading && (<>
-          <TodosLoading />
-          <TodosLoading />
-          <TodosLoading />
-        </>)} 
-        {error && <TodosError />}
-        {(!loading && resultados.length === 0) && <EmptyTodos />}
-
-        {resultados.map(todo => (
-          <TodoItem key={todo.text} 
-          text={todo.text} 
-          completed={todo.completed}
-          onCompleted={()=>completeTodo(todo.text)}
-          onDelete={()=>deleteTodo(todo.text)}
-          />
-        ))}
-      </TodoList>
-
-        <CreateTodoButton />
-    </>
-    
-  );
-}
-
-export default App;
