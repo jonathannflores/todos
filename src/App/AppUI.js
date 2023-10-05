@@ -53,7 +53,7 @@ function AppUI(){
             <CreateTodoButton />
 
             {openModal && (<Modal>
-                HOLA
+                    Holaaaaaaaaaaaa
                 </Modal>)}
 
         </>
