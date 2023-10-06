@@ -14,7 +14,6 @@ function CreateTodoButton(){
         <button className="btn_todo" 
         onClick={()=> {
                 setOpenModal(!openModal)
-               
             }
         }
         >+</button>
