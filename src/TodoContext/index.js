@@ -11,13 +11,21 @@ function TodoProvider({ children }){
   const totalTodos = todos.length;
 
   const [searchValue, setSearchValue] = React.useState('');
-  const [openModal, setOpenModal] = React.useState(true)
+  const [openModal, setOpenModal] = React.useState(false)
 
   const resultados = todos.filter((todo)=>{
     return todo.text.toLowerCase().includes(searchValue.toLowerCase())
   })
 
-  
+  function addTodo(text){
+    const newTodos = [...todos];
+    newTodos.push({
+      text,
+      completed: false
+    })
+    saveTodo(newTodos)
+  }
+
   function completeTodo(text){
     const newTodos = [...todos];
     const todoIndex = newTodos.findIndex(
@@ -44,6 +52,7 @@ function TodoProvider({ children }){
         searchValue,
         setSearchValue,
         resultados,
+        addTodo,
         completeTodo,
         deleteTodo,
         openModal,

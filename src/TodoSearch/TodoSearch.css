@@ -2,14 +2,17 @@
     width: 80%;
     height: 50px;
     border-radius: 28px;
-    
+    text-align: center;
+    color: white;
     border: none;
     border-color: rgb(233, 14, 14);
-    background-color: rgba(106, 69, 148, 0.658)
+    background-color: rgba(106, 69, 148, 0.658);
+    padding: 0 20px 0 20px
 }
 
 .search::placeholder{
     color: white;
+    text-align: center;
     padding-left: 18px;
    
 }
