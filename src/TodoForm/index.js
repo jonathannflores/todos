@@ -15,8 +15,11 @@ function TodoForm(){
     }
 
     const onSubmit = () => {
-        addTodo(newTodoValue)
-        setOpenModal(false)
+        if(newTodoValue!==''){
+            addTodo(newTodoValue)
+            setOpenModal(false)
+        } 
+        
     }
 
     const onChange = (event) => {
